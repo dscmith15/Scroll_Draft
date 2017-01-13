@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 /**
  * Created by Dustin on 3/28/2016.
+ * updated on 1/1/2017
  */
 public class ScrollTextView extends TextView {
 
