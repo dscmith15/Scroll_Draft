@@ -18,6 +18,8 @@ public class ScrollTextView extends TextView {
     // scrolling feature
     private Scroller mSlr;
 
+
+
     // milliseconds for a round of scrolling
     private int mRndDuration = 1000000000;
 
@@ -32,11 +34,13 @@ public class ScrollTextView extends TextView {
 
     private int mMovementIter = 300;
 
-    private float mSpeedIter = 30f;
+    private float mSpeedIter = 50f;
 
     public boolean completed = false;
 
     private int distance;
+
+    
 
     /*
     * constructor
@@ -63,6 +67,7 @@ public class ScrollTextView extends TextView {
     /*
     * constructor
     */
+
     public ScrollTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         // customize the TextView
@@ -70,6 +75,7 @@ public class ScrollTextView extends TextView {
         setEllipsize(null);
         setVisibility(INVISIBLE);
     }
+
 
     /**
      * begin to scroll the text from the original position
@@ -97,9 +103,6 @@ public class ScrollTextView extends TextView {
         // use LinearInterpolator for steady scrolling
         mSlr = new Scroller(this.getContext(), new LinearInterpolator());
 
-        // trying this to fix blurry shit
-        //mSlr = new Scroller(this.getContext(), new CycleInterpolator());
-
 
         //TODO text is blurry when going faster
         setScroller(mSlr);
@@ -109,7 +112,7 @@ public class ScrollTextView extends TextView {
         //int duration = (new Double(mRndDuration * distance * 1.00000
         // mScrollSpeed)).intValue();
 
-        int duration = (new Double(1000f * distance * 1.00000 / mScrollSpeed)).intValue();
+        int duration = (new Double(1000f * distance / mScrollSpeed)).intValue();
         setVisibility(VISIBLE);
         mSlr.startScroll(mXPaused, 0, distance, 0, duration);
         invalidate();

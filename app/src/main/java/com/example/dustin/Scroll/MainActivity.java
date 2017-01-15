@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -87,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean passageswitch = true;
     public int lastloc = 2;
     Thread timeNano;
+    //add and handler to try and fix the blur
+
 
 
 
@@ -152,13 +155,12 @@ public class MainActivity extends AppCompatActivity {
                 synchronized (this) {
                     while (true)
                         try {
+
                             completed=scrolltext.isdone();
                             if (completed & mode == -2 & passageswitch) {
                                 Thread.sleep(1);
                                 endTime = System.nanoTime() - starttime;
                                 vibrator.vibrate(1000);
-                                String pdata = "data.txt";
-                                writeStringToTextFile(Integer.toString(pnum)+"\t"+"Scroll"+"\t"+passage+"\t"+Long.toString(endTime)+"\t"+Float.toString(scrolltext.getmScrollSpeed())+"\t"+Integer.toString(textsize)+"\t"+Long.toString(litSplit.length)+"\n", pdata);
                                 passageswitch=false;
                                 passageflag = false;
                                 DialogFragment nextPasFrag = new NextPassageDialog();
